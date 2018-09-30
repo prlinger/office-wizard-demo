@@ -492,7 +492,10 @@ function setSectionSum(sectionId) {
   $('#' + sectionId).find('.block_entry').each( function() {
     let quantity = parseFloat($(this).find("input.quantity").val());
     let multiplier = parseFloat($(this).find("input.multiplier").val());
-    let sqft = quantity * multiplier;
+    let sqft = 0;
+    if(!isNaN(quantity) && !isNaN(multiplier)) {
+      sqft = quantity * multiplier;
+    }
     
     sum = sum + sqft;
     
@@ -511,7 +514,11 @@ function setSectionSum(sectionId) {
 function calculateTotals() {
   let subtotal = 0;
   $('input.sqft_sum').each( function() {
-    subtotal = subtotal + parseFloat($(this).val());
+    input = parseFloat($(this).val());
+    if(isNaN(input)) {
+      input = 0;
+    }
+    subtotal = subtotal + input;
   });
   $('#subtotal th.calculated_value').html(subtotal); // set the subtotal in table.
   
@@ -529,7 +536,7 @@ function calculateTotals() {
   rentableSquareFeet = totalUsable + loss;
   $('#rentable_square_feet th.calculated_value').html(rentableSquareFeet);
   
-  console.log("DONE::" + rentableSquareFeet);
+  console.log("DONE:: " + rentableSquareFeet);
 }
 
 
