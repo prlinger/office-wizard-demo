@@ -438,43 +438,43 @@
       </h2>
     </div>
     
-  </div>
-  
-  
-  <table class="ui inverted red table" style="margin-bottom: 4em;">
-    <thead><tr id="subtotal">
-        <th class="six wide"><h2>Subtotal</h2></th>
+    
+    <table class="ui inverted red table" style="margin-bottom: 4em;">
+      <thead><tr id="subtotal">
+          <th class="six wide"><h2>Subtotal</h2></th>
+          <th class="calculated_value">0</th>
+      </tr></thead>
+      <tbody>
+        <tr id="circulation">
+          <td>Circulation:&nbsp&nbsp&nbsp&nbsp
+            <div class="ui right labeled input">
+              <input type="text" value="35" style="width: 48px;">
+              <div class="ui basic label">%</div>
+            </div>
+          </td>
+          <td class="calculated_value">0</td>
+        </tr>
+        <tr id="total_usable">
+          <td>Usable Space:</td>
+          <td class="calculated_value">0</td>
+        </tr>
+        <tr id="loss_factor">
+          <td>Loss Factor:&nbsp&nbsp&nbsp&nbsp
+            <div class="ui right labeled input">
+              <input type="text" value="15" style="width: 48px;">
+              <div class="ui basic label">%</div>
+            </div>
+          </td>
+          <td class="calculated_value">0</td>
+        </tr>
+      </tbody>
+      <tfoot><tr id="rentable_square_feet">
+        <th><h2>Rentable Square Feet</h2></th>
         <th class="calculated_value">0</th>
-    </tr></thead>
-    <tbody>
-      <tr id="circulation">
-        <td>Circulation:&nbsp&nbsp&nbsp&nbsp
-          <div class="ui right labeled input">
-            <input type="text" value="35" style="width: 48px;">
-            <div class="ui basic label">%</div>
-          </div>
-        </td>
-        <td class="calculated_value">0</td>
-      </tr>
-      <tr id="total_usable">
-        <td>Usable Space:</td>
-        <td class="calculated_value">0</td>
-      </tr>
-      <tr id="loss_factor">
-        <td>Loss Factor:&nbsp&nbsp&nbsp&nbsp
-          <div class="ui right labeled input">
-            <input type="text" value="15" style="width: 48px;">
-            <div class="ui basic label">%</div>
-          </div>
-        </td>
-        <td class="calculated_value">0</td>
-      </tr>
-    </tbody>
-    <tfoot><tr id="rentable_square_feet">
-      <th><h2>Rentable Square Feet</h2></th>
-      <th class="calculated_value">0</th>
-    </tr></tfoot>
-  </table>
+      </tr></tfoot>
+    </table>
+    
+  </div>
   
 </div>
 
@@ -486,6 +486,7 @@
 
 let sectionIds = ['office_inputs', 'workstation_inputs', 'meeting_room_inputs', 'other_areas_inputs'];
 
+// Calculates the sum for each 
 function setSectionSum(sectionId) {
   let sum = 0;
   
@@ -523,6 +524,9 @@ function calculateTotals() {
   $('#subtotal th.calculated_value').html(subtotal); // set the subtotal in table.
   
   let circulationPercent = parseFloat($('#circulation input').val()) / 100;
+  if(isNaN(circulationPercent)) {
+    circulationPercent = 0;
+  }
   let circulation = parseInt(circulationPercent * subtotal);
   $('#circulation td.calculated_value').html(circulation);
   
@@ -530,6 +534,9 @@ function calculateTotals() {
   $('#total_usable td.calculated_value').html(totalUsable);
   
   let lossPercent = parseFloat($('#loss_factor input').val()) / 100;
+  if(isNaN(lossPercent)) {
+    lossPercent = 0;
+  }
   let loss = parseInt(lossPercent * totalUsable);
   $('#loss_factor td.calculated_value').html(loss);
   
