@@ -118,11 +118,11 @@
             <label>Quantity:</label>
             <input class="quantity" id="office_executive20x15" type="text" value="0">
             <input class="multiplier" type="hidden" value="300"> <!-- The multiplier is 20x15 = 300 -->
-            <input class="cost_per_unit" type="hidden" value="100"> <!-- This is the unit cost -->
+            <input class="cost_per_unit" type="hidden" value="2000"> <!-- This is the unit cost -->
           </div>
           <div class="red ui label block_label"  style="margin-top: 14px;">
             Cost Per Unit:
-            <div class="detail">100</div>
+            <div class="detail">2000</div>
             <div class="detail">USD</div>
           </div>
           <div class="ui hidden divider"></div>
@@ -144,11 +144,11 @@
             <label>Quantity:</label>
             <input class="quantity" id="office_large15x15" type="text" value="0">
             <input class="multiplier" type="hidden" value="225">
-            <input class="cost_per_unit" type="hidden" value="100"> <!-- This is the unit cost -->
+            <input class="cost_per_unit" type="hidden" value="1500"> <!-- This is the unit cost -->
           </div>
           <div class="red ui label block_label"  style="margin-top: 14px;">
             Cost Per Unit:
-            <div class="detail">100</div>
+            <div class="detail">1500</div>
             <div class="detail">USD</div>
           </div>
           <div class="ui hidden divider"></div>
@@ -170,11 +170,11 @@
             <label>Quantity:</label>
             <input class="quantity" id="office_standard10x15" type="text" value="0">
             <input class="multiplier" type="hidden" value="150">
-            <input class="cost_per_unit" type="hidden" value="100"> <!-- This is the unit cost -->
+            <input class="cost_per_unit" type="hidden" value="1000"> <!-- This is the unit cost -->
           </div>
           <div class="red ui label block_label"  style="margin-top: 14px;">
             Cost Per Unit:
-            <div class="detail">100</div>
+            <div class="detail">1000</div>
             <div class="detail">USD</div>
           </div>
           <div class="ui hidden divider"></div>
@@ -196,11 +196,11 @@
             <label>Quantity:</label>
             <input class="quantity" id="office_efficient10x10" type="text" value="0">
             <input class="multiplier" type="hidden" value="100">
-            <input class="cost_per_unit" type="hidden" value="100"> <!-- This is the unit cost -->
+            <input class="cost_per_unit" type="hidden" value="750"> <!-- This is the unit cost -->
           </div>
           <div class="red ui label block_label"  style="margin-top: 14px;">
             Cost Per Unit:
-            <div class="detail">100</div>
+            <div class="detail">750</div>
             <div class="detail">USD</div>
           </div>
           <div class="ui hidden divider"></div>
@@ -782,7 +782,7 @@ function setSectionSums(sectionId) {
   
   let cost_per_sqft = 0;
   if(sumSqft != 0) {
-      cost_per_sqft = (sumSqft / sumCosts).toFixed(2);
+      cost_per_sqft = (sumCosts / sumSqft).toFixed(2);
   }
   $('#' + sectionId + '_cost_per_sqft').html(
     cost_per_sqft + "<div class=\"detail\">USD</div><input class=\"cost_per_sqft\" type=\"hidden\" value=\"" + cost_per_sqft + "\">"
